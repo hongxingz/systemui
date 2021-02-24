@@ -1,0 +1,92 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "com.android.systemui"
+        minSdkVersion 28
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    //'src/main/res',
+                    '../SystemUI_SRC/res-keyguard',
+                    '../SystemUI_SRC/res',
+
+            ]
+
+            java.srcDirs = [
+                    'src/main/java',
+                    '../SystemUI_SRC/src',
+                    '../car-lib/src',
+                    '../car-lib/src_feature_current',
+            ]
+            manifest.srcFile '../SystemUI_SRC/AndroidManifest.xml'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            // 如果有多个jar需要提升优先级，用分号隔开
+            options.compilerArgs.add('-Xbootclasspath/p:../jar/framework.jar;../jar/core-oj.jar')
+        }
+    }
+}
+
+dependencies {
+
+    compileOnly files('../jar/core-oj.jar')
+    compileOnly files('../jar/framework.jar')
+    compileOnly files('../jar/telephony-common.jar')
+    compileOnly files('../jar/core-libart.jar')
+    compileOnly files('../jar/classes.jar')
+
+    //把几个模块包含进来
+    implementation project(path: ':settingslib')
+    implementation project(path: ':plugin')
+    implementation project(path: ':shared')
+    implementation project(path: ':keyguard')
+
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:car:28.0.0-alpha5'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:preference-v7:28.0.0'
+    implementation 'com.android.support:mediarouter-v7:28.0.0'
+    implementation 'com.android.support:palette-v7:28.0.0'
+    implementation 'com.android.support:preference-v14:28.0.0'
+    implementation 'com.android.support:leanback-v17:28.0.0'
+    implementation 'com.android.support:gridlayout-v7:28.0.0-rc02'
+    implementation 'com.android.support:slices-builders:28.0.0-alpha3'
+    implementation 'com.android.support:slices-core:28.0.0-alpha3'
+    implementation 'com.android.support:slices-view:28.0.0-alpha3'
+    implementation 'com.google.protobuf:protobuf-java:3.12.2'
+    implementation group: 'com.google.protobuf.nano', name: 'protobuf-javanano', version: '3.1.0'
+
+
+}

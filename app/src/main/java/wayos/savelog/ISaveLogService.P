@@ -1,0 +1,4 @@
+out/target/common/obj/JAVA_LIBRARIES/android.car_intermediates/aidl/src/wayos/savelog/ISaveLogService.java : \
+  packages/services/Car/car-lib/src/wayos/savelog/ISaveLogService.aidl
+
+packages/services/Car/car-lib/src/wayos/savelog/ISaveLogService.aidl :

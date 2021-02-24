@@ -1,0 +1,6 @@
+include ':settingslib'
+include ':shared'
+include ':plugin'
+include ':keyguard'
+include ':app'
+rootProject.name = "SystemUI"
