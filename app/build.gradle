@@ -31,18 +31,18 @@ android {
         main {
             res.srcDirs = [
                     //'src/main/res',
-                    '../SystemUI_SRC/res-keyguard',
-                    '../SystemUI_SRC/res',
+                    './res-keyguard',
+                    './res',
 
             ]
 
             java.srcDirs = [
                     'src/main/java',
-                    '../SystemUI_SRC/src',
+//                    './src',
                     '../car-lib/src',
                     '../car-lib/src_feature_current',
             ]
-            manifest.srcFile '../SystemUI_SRC/AndroidManifest.xml'
+//            manifest.srcFile './AndroidManifest.xml'
         }
     }
 

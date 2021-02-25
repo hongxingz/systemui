@@ -30,7 +30,7 @@ android {
     sourceSets {
         main {
             java.srcDirs = [
-                    '../SystemUI_SRC/plugin/src',
+                    '../app/plugin/src',
             ]
         }
     }
